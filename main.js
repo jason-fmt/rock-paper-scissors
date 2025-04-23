@@ -1,10 +1,27 @@
 let humanScore = 0
 let computerScore = 0
+let draws = 0
+
+playGame()
+
+function playGame() {
+
+  for(let i = 0; i < 5; i++) {
+    let humanSelection = getHumanChoice()
+    let computerSelection = getComputerChoice()
+    playRound(humanSelection, computerSelection)
+  }
+
+  displayResults()
+}
 
 function playRound(humanChoice, computerChoice) {
 
+  displayChoices(humanChoice, computerChoice)
+
   if (humanChoice === computerChoice) {
     console.log("It's a tie!")
+    draws+=1
   } else if (humanChoice === 'rock') {
     if (computerChoice === 'paper') {
       console.log('You lose! Paper beats rock!');
@@ -30,6 +47,7 @@ function playRound(humanChoice, computerChoice) {
       humanScore+=1
     }
   }
+  console.log('\n')
 }
 
 function getComputerChoice() {
@@ -49,5 +67,17 @@ function getComputerChoice() {
 }
  
 function getHumanChoice() {
-  return prompt('Enter your choice of rock, paper or scissors.')
+  return prompt('Enter your choice of rock, paper or scissors.').toLowerCase()
+}
+
+function displayChoices(humanChoice, computerChoice) {
+  console.log(`Human   : ${humanChoice}`);
+  console.log(`Computer: ${computerChoice}`);
+  
+}
+
+function displayResults() {
+  console.log(`Human score: ${humanScore}`)
+  console.log(`Computer score: ${computerScore}`)
+  console.log(`Draws: ${draws}`)
 }
