@@ -4,8 +4,33 @@ let draws = 0
 
 const buttons = document.querySelectorAll('button')
 buttons.forEach(button => {
-	button.addEventListener('click', () => console.log(button.textContent))
+	button.addEventListener('click', () => {
+    const userSelection = button.textContent.toLowerCase()
+    const computerSelection = getComputerChoice()
+    playRound(userSelection, computerSelection)
+
+    const body = document.querySelector('body')
+    const scoreDiv = document.createElement('div')
+
+    const userScore = document.createElement('p')
+    userScore.textContent = `Your wins: ${humanScore}`
+    scoreDiv.appendChild(userScore)                      
+
+    const compScore = document.createElement('p')
+    compScore.textContent = `Computer wins: ${computerScore}`
+    scoreDiv.appendChild(compScore)                      
+
+    const drawScore = document.createElement('p')
+    drawScore.textContent = `Draws: ${draws}`
+    scoreDiv.appendChild(drawScore)                      
+    
+    body.appendChild(scoreDiv)
+    
+  })
+
 })
+
+
 
 function playRound(humanChoice, computerChoice) {
 	displayChoices(humanChoice, computerChoice)
